@@ -10,18 +10,12 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as EscuelaseguraRouteImport } from './routes/escuelasegura'
 import { Route as NosotrosRouteImport } from './routes/nosotros'
 import { Route as PanelRouteImport } from './routes/panel'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EscuelaseguraRoute = EscuelaseguraRouteImport.update({
-  id: '/escuelasegura',
-  path: '/escuelasegura',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NosotrosRoute = NosotrosRouteImport.update({
@@ -37,34 +31,30 @@ const PanelRoute = PanelRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/escuelasegura': typeof EscuelaseguraRoute
   '/nosotros': typeof NosotrosRoute
   '/panel': typeof PanelRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/escuelasegura': typeof EscuelaseguraRoute
   '/nosotros': typeof NosotrosRoute
   '/panel': typeof PanelRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/escuelasegura': typeof EscuelaseguraRoute
   '/nosotros': typeof NosotrosRoute
   '/panel': typeof PanelRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/escuelasegura' | '/nosotros' | '/panel'
+  fullPaths: '/' | '/nosotros' | '/panel'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/escuelasegura' | '/nosotros' | '/panel'
-  id: '__root__' | '/' | '/escuelasegura' | '/nosotros' | '/panel'
+  to: '/' | '/nosotros' | '/panel'
+  id: '__root__' | '/' | '/nosotros' | '/panel'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  EscuelaseguraRoute: typeof EscuelaseguraRoute
   NosotrosRoute: typeof NosotrosRoute
   PanelRoute: typeof PanelRoute
 }
@@ -76,13 +66,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/escuelasegura': {
-      id: '/escuelasegura'
-      path: '/escuelasegura'
-      fullPath: '/escuelasegura'
-      preLoaderRoute: typeof EscuelaseguraRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/nosotros': {
@@ -104,7 +87,6 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  EscuelaseguraRoute: EscuelaseguraRoute,
   NosotrosRoute: NosotrosRoute,
   PanelRoute: PanelRoute,
 }
